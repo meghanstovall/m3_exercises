@@ -1,33 +1,34 @@
-require 'spec_helper'
+require './spec/spec_helper'
 
 describe ChuckService do
   before(:each) do
-    @c = ChuckService.new
+    @chuck = ChuckService.new
   end
+
   it 'exists' do
-    expect(@c).to be_a(ChuckService)
+    expect(@chuck).to be_a(ChuckService)
   end
 
   it 'can find a random Chuck Norris joke' do
-    joke = @c.random
+    joke = @chuck.random
 
-    expect(joke).to have_key("category")
+    expect(joke).to have_key("categories")
     expect(joke).to have_key("icon_url")
     expect(joke).to have_key("id")
     expect(joke).to have_key("value")
   end
 
   it 'can find a random joke in a category' do
-    joke = @c.random_in_category('music')
+    joke = @chuck.random_in_category('music')
 
-    expect(joke).to have_key("category")
+    expect(joke).to have_key("categories")
     expect(joke).to have_key("icon_url")
     expect(joke).to have_key("id")
     expect(joke).to have_key("value")
   end
 
   it 'can find a list of all categories' do
-    categories = @c.categories
+    categories = @chuck.categories
 
     expect(categories).to include("music")
     expect(categories).to include("science")
@@ -37,11 +38,11 @@ describe ChuckService do
   end
 
   it 'can search for a joke' do
-    search_results = @c.search("snakes")
+    search_results = @chuck.search("snakes")
 
     expect(search_results).to have_key("total")
     expect(search_results).to have_key("result")
-    expect(search_results["result"][0]).to have_key("category")
+    expect(search_results["result"][0]).to have_key("categories")
     expect(search_results["result"][0]).to have_key("icon_url")
     expect(search_results["result"][0]).to have_key("id")
     expect(search_results["result"][0]).to have_key("value")

@@ -2,22 +2,22 @@ require './spec/spec_helper'
 
 describe AdviceService do
   before(:each) do
-    @a = AdviceService.new
+    @advice = AdviceService.new
   end
 
   it 'exists' do
-    expect(@a).to be_a(AdviceService)
+    expect(@advice).to be_a(AdviceService)
   end
 
   it 'can find a random piece of advice' do
-    random = @a.random
+    random = @advice.random
 
     expect(random["slip"]).to have_key("slip_id")
     expect(random["slip"]).to have_key("advice")
   end
 
   it 'can find a piece of advice by id' do
-    advice = @a.find(2)
+    advice = @advice.find(2)
 
     expected = "Smile and the world smiles with you. Frown and you're on your own."
     actual   = advice["slip"]["advice"]
@@ -26,7 +26,7 @@ describe AdviceService do
   end
 
   it 'can find a piece of advice by id' do
-    advice = @a.search("happiness")
+    advice = @advice.search("happiness")
 
     expect(advice).to have_key("total_results")
     expect(advice).to have_key("query")

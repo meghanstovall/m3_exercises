@@ -2,15 +2,15 @@ require './spec/spec_helper'
 
 describe DiscogsService do
   before(:each) do
-    @d = DiscogsService.new
+    @discog = DiscogsService.new
   end
 
   it 'exists' do
-    expect(@d).to be_a(DiscogsService)
+    expect(@discog).to be_a(DiscogsService)
   end
 
   it 'can find a list of releases from an artist' do
-    releases = @d.releases_from_artist("The Faces")
+    releases = @discog.releases_from_artist("The Faces")
 
     expect(releases).to have_key("pagination")
     expect(releases).to have_key("results")
@@ -19,7 +19,7 @@ describe DiscogsService do
   end
 
   it 'can find a release rating' do
-    rating = @d.release_rating(249504)
+    rating = @discog.release_rating(249504)
 
     expect(rating).to have_key("videos")
     expect(rating).to have_key("id")

@@ -2,15 +2,15 @@ require './spec/spec_helper'
 
 describe TacoService do
   before(:each) do
-    @t = TacoService.new
+    @taco = TacoService.new
   end
 
   it 'exists' do
-    expect(@t).to be_a(TacoService)
+    expect(@taco).to be_a(TacoService)
   end
 
   it 'can create a taco with random ingreients' do
-    r = @t.random_ingredients
+    r = @taco.random_ingredients
 
     expect(r).to have_key("mixin")
     expect(r).to have_key("seasoning")
@@ -20,7 +20,7 @@ describe TacoService do
   end
 
   it 'can find a random taco' do
-    r = @t.random_taco
+    r = @taco.random_taco
 
     expect(r).to have_key("condiment_url")
     expect(r).to have_key("seasoning_url")
@@ -35,13 +35,13 @@ describe TacoService do
   end
 
   it 'can find a list of contributors' do
-    c = @t.contributors
+    c = @taco.contributors
 
     expect(c).to be_a(Array)
   end
 
   it 'can find contributions for a specific user' do
-    c = @t.contributions("littlewhirl")
+    c = @taco.contributions("littlewhirl")
 
     expect(c).to have_key("full_name")
     expect(c).to have_key("username")
@@ -54,7 +54,7 @@ describe TacoService do
   end
 
   it 'can find ingredients of a specific type' do
-    c = @t.ingredients_by_type("base_layers")
+    c = @taco.ingredients_by_type("base_layers")
 
     expect(c).to be_a(Array)
     expect(c[0]).to have_key("name")
@@ -62,7 +62,7 @@ describe TacoService do
   end
 
   it 'can find contributors to a specific ingrdient' do
-    c = @t.contributors_by_ingredient("base_layers", "boiled_ground_beef")
+    c = @taco.contributors_by_ingredient("base_layers", "boiled_ground_beef")
 
     expect(c).to be_a(Array)
     expect(c[0]).to have_key("gravatar")
@@ -70,4 +70,3 @@ describe TacoService do
     expect(c[0]).to have_key("full_name")
   end
 end
-
